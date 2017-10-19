@@ -10,7 +10,7 @@ import UIKit
 
 extension UIImage {
 
-    func hnk_imageByScaling(toSize size: CGSize) -> UIImage {
+    @objc func hnk_imageByScaling(toSize size: CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(size, !hnk_hasAlpha(), 0.0)
         draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -18,7 +18,7 @@ extension UIImage {
         return resizedImage!
     }
 
-    func hnk_hasAlpha() -> Bool {
+    @objc func hnk_hasAlpha() -> Bool {
         guard let alphaInfo = self.cgImage?.alphaInfo else { return false }
         switch alphaInfo {
         case .first, .last, .premultipliedFirst, .premultipliedLast, .alphaOnly:
@@ -28,13 +28,13 @@ extension UIImage {
         }
     }
     
-    func hnk_data(compressionQuality: Float = 1.0) -> Data! {
+    @objc func hnk_data(compressionQuality: Float = 1.0) -> Data! {
         let hasAlpha = self.hnk_hasAlpha()
         let data = hasAlpha ? UIImagePNGRepresentation(self) : UIImageJPEGRepresentation(self, CGFloat(compressionQuality))
         return data
     }
     
-    func hnk_decompressedImage() -> UIImage! {
+    @objc func hnk_decompressedImage() -> UIImage! {
         let originalImageRef = self.cgImage
         let originalBitmapInfo = originalImageRef?.bitmapInfo
         guard let alphaInfo = originalImageRef?.alphaInfo else { return UIImage() }

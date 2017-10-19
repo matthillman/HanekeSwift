@@ -49,7 +49,7 @@ public extension UIButton {
         }
     }
     
-    public func hnk_cancelSetImage() {
+    @objc public func hnk_cancelSetImage() {
         if let fetcher = self.hnk_imageFetcher {
             fetcher.cancelFetch()
             self.hnk_imageFetcher = nil
@@ -101,7 +101,7 @@ public extension UIButton {
     }
     
     
-    func hnk_setImage(_ image : UIImage, state : UIControlState, animated : Bool, success succeed : ((UIImage) -> ())?) {
+    @objc func hnk_setImage(_ image : UIImage, state : UIControlState, animated : Bool, success succeed : ((UIImage) -> ())?) {
         self.hnk_imageFetcher = nil
         
         if let succeed = succeed {
@@ -115,7 +115,7 @@ public extension UIButton {
         }
     }
     
-    func hnk_shouldCancelImageForKey(_ key:String) -> Bool {
+    @objc func hnk_shouldCancelImageForKey(_ key:String) -> Bool {
         if self.hnk_imageFetcher?.key == key { return false }
         
         Log.debug(message: "Cancelled set image for \((key as NSString).lastPathComponent)")
@@ -160,7 +160,7 @@ public extension UIButton {
         }
     }
     
-    public func hnk_cancelSetBackgroundImage() {
+    @objc public func hnk_cancelSetBackgroundImage() {
         if let fetcher = self.hnk_backgroundImageFetcher {
             fetcher.cancelFetch()
             self.hnk_backgroundImageFetcher = nil
@@ -211,7 +211,7 @@ public extension UIButton {
         return fetch.hasSucceeded
     }
     
-    func hnk_setBackgroundImage(_ image: UIImage, state: UIControlState, animated: Bool, success succeed: ((UIImage) -> ())?) {
+    @objc func hnk_setBackgroundImage(_ image: UIImage, state: UIControlState, animated: Bool, success succeed: ((UIImage) -> ())?) {
         self.hnk_backgroundImageFetcher = nil
         
         if let succeed = succeed {
@@ -225,7 +225,7 @@ public extension UIButton {
         }
     }
     
-    func hnk_shouldCancelBackgroundImageForKey(_ key: String) -> Bool {
+    @objc func hnk_shouldCancelBackgroundImageForKey(_ key: String) -> Bool {
         if self.hnk_backgroundImageFetcher?.key == key { return false }
         
         Log.debug(message: "Cancelled set background image for \((key as NSString).lastPathComponent)")

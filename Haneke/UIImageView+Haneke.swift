@@ -51,7 +51,7 @@ public extension UIImageView {
         }
     }
     
-    public func hnk_cancelSetImage() {
+    @objc public func hnk_cancelSetImage() {
         if let fetcher = self.hnk_fetcher {
             fetcher.cancelFetch()
             self.hnk_fetcher = nil
@@ -115,7 +115,7 @@ public extension UIImageView {
         return fetch.hasSucceeded
     }
     
-    func hnk_setImage(_ image : UIImage, animated : Bool, success succeed : ((UIImage) -> ())?) {
+    @objc func hnk_setImage(_ image : UIImage, animated : Bool, success succeed : ((UIImage) -> ())?) {
         self.hnk_fetcher = nil
         
         if let succeed = succeed {
@@ -129,7 +129,7 @@ public extension UIImageView {
         }
     }
     
-    func hnk_shouldCancel(forKey key:String) -> Bool {
+    @objc func hnk_shouldCancel(forKey key:String) -> Bool {
         if self.hnk_fetcher?.key == key { return false }
         
         Log.debug(message: "Cancelled set image for \((key as NSString).lastPathComponent)")

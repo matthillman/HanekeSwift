@@ -53,7 +53,7 @@ extension Int {
 extension NSMutableData {
     
     /** Convenient way to append bytes */
-    internal func appendBytes(arrayOfBytes: [UInt8]) {
+    @objc internal func appendBytes(arrayOfBytes: [UInt8]) {
         self.append(arrayOfBytes, length: arrayOfBytes.count)
     }
     
